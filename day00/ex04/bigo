@@ -1,0 +1,4 @@
+time:
+	0(nm) where 'n' is the size of the long array and 'm' the substring
+space
+	O(1) space.

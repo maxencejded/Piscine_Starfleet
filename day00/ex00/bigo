@@ -1,0 +1,4 @@
+time:
+	O(n) because are going through the whole array
+space
+	O(1) space.

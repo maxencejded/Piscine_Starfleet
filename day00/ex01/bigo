@@ -1,0 +1,5 @@
+time:
+	O(n^2) because are going through the whole array once and then comparing
+			with all the previous elements
+space
+	O(1) space.

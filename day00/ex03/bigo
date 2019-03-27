@@ -1,0 +1,5 @@
+time:
+	O(1) for the best
+	0(n) for the worst. Depending if there are collisions
+space
+	O(n) space. Create a new data structure to store all the elements

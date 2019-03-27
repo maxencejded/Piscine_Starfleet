@@ -1,0 +1,7 @@
+time:
+	0(logn) because we are comparing the middle of the array and change the
+			start and the end of the array based on the comparison output
+space
+	O(1) space.
+condition
+	The array must be sorted
