@@ -1,0 +1,5 @@
+time:
+	0(n^2). We iterate through all element of the list to add it then,
+			we iterate through the stack to pop all the element.
+space
+	O(n). We create a new data structure to store the all elements
