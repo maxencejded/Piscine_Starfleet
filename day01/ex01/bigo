@@ -1,0 +1,4 @@
+time:
+	0(n). We iterate through all element of the list
+space
+	O(1)
