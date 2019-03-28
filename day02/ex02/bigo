@@ -1,0 +1,8 @@
+time:
+	0(nlogn) best case
+	O(n^2) worst case
+	The algorithm is close form merger sort. We choose a pivot index then we are
+	sorting the array (from 0 to pivot) and the other (form pivot to size) and we
+	keep doing it recursively until the array is sort.
+space
+	O(1) space.
