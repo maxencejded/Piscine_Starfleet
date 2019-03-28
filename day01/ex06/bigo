@@ -1,0 +1,4 @@
+time:
+	O(n) because we iterate through the whole list.
+space
+	O(1). No change in the memory.
