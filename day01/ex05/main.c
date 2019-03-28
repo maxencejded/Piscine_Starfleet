@@ -41,7 +41,6 @@ int main(void)
 		}
 	}
 	tankFree(tank);
-	system("leaks tank");
 	return (0);
 }
 

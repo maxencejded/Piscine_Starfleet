@@ -1,0 +1,4 @@
+time:
+	O(1) because we are accessing the first element of the tank.
+space
+	O(1). We keep the address of the message in the queue.
