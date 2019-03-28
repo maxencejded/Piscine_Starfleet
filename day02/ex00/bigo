@@ -1,0 +1,4 @@
+time:
+	O(nlogn). Merge sort split the stack by 2 iteratively until we only have one or 2 elements then we merge all back in order.
+space
+	O(1). We keep the same list to sort it.
