@@ -1,0 +1,4 @@
+time:
+	O(3n) because we iterate through the whole list three times.
+space
+	O(n). We create a new list.
