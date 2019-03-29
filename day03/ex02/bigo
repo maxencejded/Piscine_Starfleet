@@ -1,0 +1,7 @@
+time:
+	0(nlogn) best case.
+	0(n^2logn) worst case.
+	Because we iterate through the tree once to check if the two key are inside
+	then we use the LCA algorithm which is in logn or nlogn for the worst case
+space
+	O(1).
