@@ -1,0 +1,5 @@
+time:
+	0(logn) best case
+	0(n) worst case
+space
+	O(n). where 'n' is the number of elements
