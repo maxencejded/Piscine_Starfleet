@@ -3,32 +3,28 @@
 static void		swapNodeLeft(struct s_node **head)
 {
 	struct s_node	*n_head;
-	struct s_node	*right;
-	struct s_node	*n_left;
+	struct s_node	*right_old;
 
-	n_left = *head;
-	right = n_left->right;
-	n_head = n_left->left;
-	n_left->left = n_head->left;
-	n_left->right = n_head->right;
-	n_head->right = right;
-	n_head->left = n_left;
+	n_head = (*head)->left;
+	right_old = (*head)->right;
+	(*head)->left = n_head->left;
+	(*head)->right = n_head->right;
+	n_head->right = right_old;
+	n_head->left = (*head);
 	*head = n_head;
 }
 
 static void		swapNodeRight(struct s_node **head)
 {
 	struct s_node	*n_head;
-	struct s_node	*left;
-	struct s_node	*n_right;
+	struct s_node	*left_old;
 
-	n_right = *head;
-	left = n_right->left;
-	n_head = n_right->right;
-	n_right->left = n_head->left;
-	n_right->right = n_head->right;
-	n_head->left = left;
-	n_head->right = n_right;
+	n_head = (*head)->right;
+	left_old = (*head)->left;
+	(*head)->left = n_head->left;
+	(*head)->right = n_head->right;
+	n_head->left = left_old;
+	n_head->right = (*head);
 	*head = n_head;
 }
 
