@@ -1,0 +1,8 @@
+time:
+	0(nlogn) best case.
+	0(n^2) worst case.
+	Because we iterate through the end of a branch and, if needed, swap the value
+	with the value above until the condition is reach (like insertion sort).
+	So if the tree is unbalanced, that would be n^2 and if it's balance, nlogn.
+space
+	O(1).
