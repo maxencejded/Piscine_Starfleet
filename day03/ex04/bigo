@@ -1,0 +1,8 @@
+time:
+	0(2nlogn) best case.
+	0(2n^2) worst case.
+	First we add the monkey on the tree, we iterate through the left. Then we iterate through the end of a branch and, if needed, swap the value
+	with the value above until the condition is reach (like insertion sort).
+	So if the tree is unbalanced, that would be n^2 and if it's balance, nlogn.
+space
+	O(1).
