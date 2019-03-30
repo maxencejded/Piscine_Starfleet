@@ -10,6 +10,14 @@ struct				s_node {
 	struct s_node	*left;
 };
 
+struct				s_queue {
+	int				front;
+	int				rear;
+	int				size;
+	int				*height;
+	struct s_node	**array;
+};
+
 
 /*--------------------------------
   :) function you must implement

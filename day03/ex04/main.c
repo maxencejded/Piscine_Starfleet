@@ -6,8 +6,12 @@
 
 #include "header.h"
 
+#define BUFF_SIZE 255
+
 int main(void)
 {
+	int				len;
+	char			buff[BUFF_SIZE + 1];
 	struct s_node	*root;
 	struct s_node	*monkey;
 
@@ -16,12 +20,23 @@ int main(void)
 	/*-------------------
 	launch your test here
 	--------------------*/
-	printf("inserting some monkey\n");
-	monkey = randomMonkey();
-	printf("Monkey value: %d\n", monkey->value);
-	insertMonkey(&root, monkey);
-	printBinaryTree(root);
-
+	while (42)
+	{
+		fgets(buff, BUFF_SIZE + 1, stdin);
+		if ((len = strlen(buff)) > 1)
+		{
+			buff[len - 1] = '\0';
+			if (strcmp(buff, "EXIT") == 0)
+				break ;
+			else
+			{
+				monkey = randomMonkey();
+				printf("Monkey value: %d\n", monkey->value);
+				insertMonkey(&root, monkey);
+				printBinaryTree(root);
+			}
+		}
+	}
 	return (0);
 }
 
