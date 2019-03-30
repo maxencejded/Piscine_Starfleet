@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static void		swapNodeLeft(struct s_node **head)
+static void				swapNodeLeft(struct s_node **head)
 {
 	struct s_node	*n_head;
 	struct s_node	*right_old;
@@ -16,7 +16,7 @@ static void		swapNodeLeft(struct s_node **head)
 	*head = n_head;
 }
 
-static void		swapNodeRight(struct s_node **head)
+static void				swapNodeRight(struct s_node **head)
 {
 	struct s_node	*n_head;
 	struct s_node	*left_old;
@@ -30,7 +30,7 @@ static void		swapNodeRight(struct s_node **head)
 	*head = n_head;
 }
 
-static void		saveTheSequoia(struct s_node **root)
+static void				saveTheSequoia(struct s_node **root)
 {
 	if ((*root)->left)
 		saveTheSequoia(&(*root)->left);
@@ -48,7 +48,7 @@ static void		saveTheSequoia(struct s_node **root)
 	}
 }
 
-struct s_queue			*queueInit(int size)
+static struct s_queue	*queueInit(int size)
 {
 	struct s_queue	*queue;
 
@@ -62,35 +62,27 @@ struct s_queue			*queueInit(int size)
 	return (queue);
 }
 
-void					queueShift(struct s_queue *queue)
+static void				queueFree(struct s_queue *queue)
 {
-	int			i;
-
-	if (queue->front == 0)
-		queue->front = 1;
-	i = queue->front;
-	while (i < queue->rear)
+	if (queue)
 	{
-		queue->array[i - 1] = queue->array[i];
-		queue->height[i - 1] = queue->height[i];
-		i += 1;
+		free(queue->height);
+		free(queue->array);
+		free(queue);
 	}
-	queue->front--;
-	queue->rear--;
-	queue->size--;
 }
 
-void					enqueue(struct s_queue *queue, struct s_node *i, int height)
+static void				enqueue(struct s_queue *queue, struct s_node *i, int height)
 {
 	if (queue->rear == queue->size - 1)
-		queueShift(queue);
+		return ;
 	queue->array[++queue->rear] = i;
 	queue->height[queue->rear] = height;
 	if (queue->front == -1)
 		++queue->front;
 }
 
-struct s_node			*dequeue(struct s_queue *queue)
+static struct s_node	*dequeue(struct s_queue *queue)
 {
 	struct s_node	*tmp;
 
@@ -108,7 +100,7 @@ struct s_node			*dequeue(struct s_queue *queue)
 	return (tmp);
 }
 
-struct s_node 			*peek(struct s_queue *queue, int *height)
+static struct s_node	*peek(struct s_queue *queue, int *height)
 {
 	if (!queue || queue->front == -1)
 		return (NULL);
@@ -116,7 +108,7 @@ struct s_node 			*peek(struct s_queue *queue, int *height)
 	return (queue->array[queue->front]);
 }
 
-void					insertNode(struct s_node **root, struct s_node *monkey, struct s_queue *queue)
+static void				insertNode(struct s_node **root, struct s_node *monkey, struct s_queue *queue)
 {
 	int				height;
 	struct s_node	*front;
@@ -138,16 +130,27 @@ void					insertNode(struct s_node **root, struct s_node *monkey, struct s_queue 
 	enqueue(queue, monkey, height);
 }
 
-void					queueFill(struct s_node *root, struct s_queue *queue, int height)
+static void				queueSize(struct s_node *root, int *size)
+{
+	if (root->left)
+		queueSize(root->left, size);
+	if (!root->left || !root->right)
+		*size += 1;
+	if (root->right)
+		queueSize(root->right, size);
+}
+
+static void				queueFill(struct s_node *root, struct s_queue *queue, int height)
 {
 	if (root->left)
 		queueFill(root->left, queue, height + 1);
-	enqueue(queue, root, height);
+	if (!root->left || !root->right)
+		enqueue(queue, root, height);
 	if (root->right)
 		queueFill(root->right, queue, height + 1);
 }
 
-void					queueSort(struct s_queue *queue)
+static void				queueSort(struct s_queue *queue)
 {
 	int				i;
 	int				j;
@@ -172,42 +175,23 @@ void					queueSort(struct s_queue *queue)
 	}
 }
 
-void					queuePrint(struct s_queue *queue)
-{
-	int		i;
-
-	i = queue->front;
-	while (i <= queue->rear)
-	{
-		printf("[%d] (%d)\n", queue->array[i]->value, queue->height[i]);
-		i += 1;
-	}
-}
-
-int						asTwoChild(struct s_node *i)
-{
-	if (i && i->left && i->right)
-		return (1);
-	return (0);
-}
-
-void					queueCheck(struct s_queue *queue)
-{
-	while (asTwoChild(queue->array[queue->front]))
-		queue->front += 1;
-}
-
 void					insertMonkey(struct s_node **root, struct s_node *monkey)
 {
 	int				height;
+	int				size;
 	struct s_queue	*queue;
 
+	size = 0;
 	height = 0;
-	queue = queueInit(20);
-	queueFill(*root, queue, height);
-	queueSort(queue);
-	queueCheck(queue);
-	queuePrint(queue);
+	queue = NULL;
+	if (*root)
+	{
+		queueSize(*root, &size);
+		queue = queueInit(size + 1);
+		queueFill(*root, queue, height);
+		queueSort(queue);
+	}
 	insertNode(root, monkey, queue);
-	// saveTheSequoia(root);
+	queueFree(queue);
+	saveTheSequoia(root);
 }
