@@ -8,9 +8,9 @@ char		*getSum(char *a, char *b)
 	int		r;
 	char	*bits;
 
-	if (!(bits = (char *)malloc(sizeof(char) * 6)))
+	if (!(bits = (char *)malloc(sizeof(char) * 7)))
 		return (NULL);
-	bzero(bits, sizeof(char) * 6);
+	bzero(bits, sizeof(char) * 7);
 	i = 5;
 	r = 0;
 	while (i >= 0)
