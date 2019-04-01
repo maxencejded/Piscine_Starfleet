@@ -18,7 +18,7 @@ char		*rightShift(char *bin, int k)
 	}
 	while (i >= 0)
 	{
-		bits[i] = '1';
+		bits[i] = bin[0];
 		i -= 1;
 	}
 	return (bits);
