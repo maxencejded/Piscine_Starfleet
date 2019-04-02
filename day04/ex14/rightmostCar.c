@@ -1,5 +1,4 @@
 #include "header.h"
-#include <math.h>
 
 int			addition(int x, int y)
 {

@@ -1,4 +1,5 @@
 #include "header.h"
+#include <math.h>
 
 int			addition(int x, int y)
 {
@@ -16,10 +17,10 @@ int			carPosition(unsigned int parkingRow)
 	flags = 0;
 	while (parkingRow)
 	{
-		if (parkingRow & 1)
-			flags = addition(flags, 1);
-		parkingRow >>= 1;
 		nbr = addition(nbr, 1);
+		if (parkingRow & 1)
+			flags |= (int)pow(2, nbr);
+		parkingRow >>= 1;
 	}
-	return ((flags == 1) ? nbr : -1);
+	return ((flags & 2) ? -1 : nbr);
 }
