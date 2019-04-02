@@ -1,0 +1,4 @@
+time:
+	O(m) because of the recursion (m is the number of bits).
+space
+	O(m) because of the recursion (m is the number of bits).
