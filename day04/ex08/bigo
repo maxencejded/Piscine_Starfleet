@@ -1,4 +1,4 @@
 time:
-	O(1).
+	O(n).
 space
 	O(n) because of the recursion (n is the number of bits).

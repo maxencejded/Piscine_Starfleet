@@ -2,9 +2,9 @@
 
 int			addition(int x, int y)
 {
-	if (y == 0)
-		return x;
-	return (addition( x ^ y, (x & y) << 1));
+	if (y)
+		return (addition( x ^ y, (x & y) << 1));
+	return (x);
 }
 
 int			carPosition(unsigned int parkingRow)
@@ -14,7 +14,7 @@ int			carPosition(unsigned int parkingRow)
 
 	nbr = 0;
 	flags = 0;
-	while (parkingRow != 0)
+	while (parkingRow)
 	{
 		if (parkingRow & 1)
 			flags = addition(flags, 1);
