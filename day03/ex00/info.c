@@ -52,7 +52,7 @@ struct s_info		getInfo(struct s_node *root)
 	infos.isBST = 1;
 	infos.isBalanced = 0;
 	traversalTree(root, &infos.elements, &infos.min, &infos.max, &infos.isBST);
-	infos.height = heightTree(root);
+	infos.height = heightTree(root) - 1;
 	infos.isBalanced = balanceTree(root);
 	return (infos);
 }
